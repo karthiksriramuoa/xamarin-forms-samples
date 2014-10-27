@@ -70,11 +70,17 @@
     <Compile Include="SwitchCellDemoPage.cs" />
     <Compile Include="SwitchDemoPage.cs" />
     <Compile Include="TabbedPageDemoPage.cs" />
-    <Compile Include="TableViewFormDemoPage.cs" />
     <Compile Include="TableViewMenuDemoPage.cs" />
     <Compile Include="TextCellDemoPage.cs" />
     <Compile Include="TimePickerDemoPage.cs" />
     <Compile Include="WebViewDemoPage.cs" />
+    <Compile Include="NotesEditorPage.cs" />
+    <Compile Include="Models\AbstractRecord.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Repositories\RecordRepository.cs" />
+    <Compile Include="NewContactPage.cs" />
+    <Compile Include="AddExistingRecordPage.cs" />
+    <Compile Include="ChooseRecordTypePage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -106,4 +112,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
 </Project>
