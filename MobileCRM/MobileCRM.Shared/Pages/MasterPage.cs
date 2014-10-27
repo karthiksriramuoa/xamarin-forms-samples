@@ -18,10 +18,12 @@ namespace MobileCRM.Shared.Pages
             this.SetValue(Page.TitleProperty, menuItem.Title);
             this.SetValue(Page.IconProperty, menuItem.Icon);
 
-            Map = new MapPage<T>(viewModel);
-            List = new ListPage<T>(viewModel) { Icon = "list.png" };
+			List = new ListPage<T>(viewModel) { Icon = "list.png" };
+			//we don't want to use the map page
+            //Map = new MapPage<T>(viewModel);
+            
 
-            this.Children.Add(Map);
+            //this.Children.Add(Map);
             this.Children.Add(List);
         }
     }

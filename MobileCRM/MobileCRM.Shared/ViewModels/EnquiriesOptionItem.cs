@@ -7,21 +7,30 @@ using System.Linq;
 
 namespace MobileCRM.Models
 {
-    public class OpportunitiesOptionItem : OptionItem
+
+	public class EventsOptionItem : OptionItem
+	{
+	}
+
+    public class EnquiriesOptionItem : OptionItem
     {
-        public override string Title { get { return "Opportunities"; } }
-        public override string Icon { get { return "opportunity.png"; } }
+        public override string Title { get { return "Enquiries"; } }
+        public override string Icon { get { return "enquiry.png"; } }
     }
+
+	public class ShootsOptionItem : OptionItem
+	{
+	}
+
+	public class TasksOptionItem : OptionItem
+	{
+	}
 
     public class ContactsOptionItem : OptionItem
     {
     }
 
-    public class LeadsOptionItem : OptionItem
-    {
-    }
-
-    public class AccountsOptionItem : OptionItem
+    public class PurchasesOptionItem : OptionItem
     {
     }
 

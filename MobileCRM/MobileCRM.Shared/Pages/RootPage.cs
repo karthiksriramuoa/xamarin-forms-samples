@@ -59,23 +59,28 @@ namespace MobileCRM.Shared.Pages
         Page PageForOption (OptionItem option)
         {
             // TODO: Refactor this to the Builder pattern (see ICellFactory).
-            if (option.Title == "Contacts")
+			if (option.Title == "Events")
+				return new MasterPage<Contact>(option);
+			if (option.Title == "Enquiries") {
+				var page = new MasterPage<Opportunity>(option);
+				var cell = page.List.Cell;
+				cell.SetBinding(TextCell.TextProperty, "Company");
+				cell.SetBinding(TextCell.DetailProperty, new Binding("EstimatedAmount", stringFormat: "{0:C}"));
+				return page;
+			}
+			if (option.Title == "Shoots")
+				return new MasterPage<Contact>(option);
+			if (option.Title == "Tasks")
+				return new MasterPage<Contact>(option);
+			if (option.Title == "Contacts")
                 return new MasterPage<Contact>(option);
-            if (option.Title == "Leads")
-                return new MasterPage<Lead>(option);
-            if (option.Title == "Accounts") {
+			if (option.Title == "Purchases") {
                 var page = new MasterPage<Account>(option);
                 var cell = page.List.Cell;
                 cell.SetBinding(TextCell.TextProperty, "Company");
                 return page;
             }
-            if (option.Title == "Opportunities") {
-                var page = new MasterPage<Opportunity>(option);
-                var cell = page.List.Cell;
-                cell.SetBinding(TextCell.TextProperty, "Company");
-                cell.SetBinding(TextCell.DetailProperty, new Binding("EstimatedAmount", stringFormat: "{0:C}"));
-                return page;
-            }
+
             throw new NotImplementedException("Unknown menu option: " + option.Title);
         }
     }

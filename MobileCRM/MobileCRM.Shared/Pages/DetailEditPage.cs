@@ -42,6 +42,7 @@ namespace MobileCRM.Shared.Pages
                 }
             }));
             Content = detailTable;
+
         }
 
         protected override void OnPropertyChanging (string propertyName = null)
