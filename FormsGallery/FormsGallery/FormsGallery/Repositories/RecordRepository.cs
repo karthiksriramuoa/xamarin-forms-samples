@@ -25,6 +25,9 @@ namespace FormsGallery.Repositories
 
 		private RecordRepository ()
 		{
+			// Create some mock records
+			this.records = new List<AbstractRecord> ();
+
 			this.records.Add (new Contact{
 				RecordId = 1,
 				IsCompany = false,

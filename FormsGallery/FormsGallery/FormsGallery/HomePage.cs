@@ -15,6 +15,14 @@ namespace FormsGallery
                     await this.Navigation.PushAsync(page);
                 });
 
+			Command newContactCommand = 
+				new Command (async() =>
+				{
+					Page page = new NewContactPage (null);
+					await this.Navigation.PushAsync (page);
+				});
+
+
             this.Title = "Forms Gallery";
             this.Content = new TableView
                 {
@@ -61,13 +69,13 @@ namespace FormsGallery
 //
 //                        new TableSection("Views that Initiate Commands")
 //                        {
-                            new TextCell
-                            {
-                                Text = "Button",
-                                Command = navigateCommand,
-                                CommandParameter = typeof(ButtonDemoPage)
-                            },
-//
+//                            new TextCell
+//                            {
+//                                Text = "Button",
+//                                Command = navigateCommand,
+//                                CommandParameter = typeof(ButtonDemoPage)
+//                            },
+////
 //                            new TextCell
 //                            {
 //                                Text = "SearchBar",
@@ -99,19 +107,19 @@ namespace FormsGallery
 //                                CommandParameter = typeof(SwitchDemoPage)
 //                            },
 //
-                            new TextCell
-                            {
-                                Text = "DatePicker",
-                                Command = navigateCommand,
-                                CommandParameter = typeof(DatePickerDemoPage)
-                            },
-
-                            new TextCell
-                            {
-                                Text = "TimePicker",
-                                Command = navigateCommand,
-                                CommandParameter = typeof(TimePickerDemoPage)
-                            },
+//                            new TextCell
+//                            {
+//                                Text = "DatePicker",
+//                                Command = navigateCommand,
+//                                CommandParameter = typeof(DatePickerDemoPage)
+//                            },
+//
+//                            new TextCell
+//                            {
+//                                Text = "TimePicker",
+//                                Command = navigateCommand,
+//                                CommandParameter = typeof(TimePickerDemoPage)
+//                            },
 //                        },
 //
 //                        new TableSection("Views for Editing Text")
@@ -174,8 +182,7 @@ namespace FormsGallery
                             new TextCell
                             {
                                 Text = "New Contact",
-                                Command = navigateCommand,
-                                CommandParameter = typeof(NewContactPage)
+                                Command = newContactCommand
                             },
 //                        },
 //
@@ -234,12 +241,12 @@ namespace FormsGallery
 //
 //                        new TableSection("Layouts with Multiple Children")
 //                        {
-                            new TextCell
-                            {
-                                Text = "StackLayout",
-                                Command = navigateCommand,
-                                CommandParameter = typeof(StackLayoutDemoPage)
-                            },
+//                            new TextCell
+//                            {
+//                                Text = "StackLayout",
+//                                Command = navigateCommand,
+//                                CommandParameter = typeof(StackLayoutDemoPage)
+//                            },
 //                            new TextCell
 //                            {
 //                                Text = "AbsoluteLayout",

@@ -80,7 +80,6 @@
     <Compile Include="Repositories\RecordRepository.cs" />
     <Compile Include="NewContactPage.cs" />
     <Compile Include="AddExistingRecordPage.cs" />
-    <Compile Include="ChooseRecordTypePage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

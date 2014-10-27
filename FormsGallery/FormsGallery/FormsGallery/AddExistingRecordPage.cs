@@ -7,34 +7,65 @@ using FormsGallery.Repositories;
 
 namespace FormsGallery
 {
+	/// <summary>
+	/// Allows an existing record to be linked to another record
+	/// </summary>
 	public class AddExistingRecordPage : ContentPage
 	{
+		private AbstractRecord parentRecord;
 		private RecordType recordType;
-		private TableSection recordsSection;
-		private Dictionary<AbstractRecord, TextCell> records;
 
-		public AddExistingRecordPage (RecordType recordType)
+		/// <summary>
+		/// Initializes a new instance of the <see cref="FormsGallery.AddExistingRecordPage"/> class.
+		/// </summary>
+		/// <param name="recordType">The types of record to be listed</param>
+		/// <param name="parentRecord">The parent record</param>
+		public AddExistingRecordPage (RecordType recordType, AbstractRecord parentRecord)
 		{
+			this.parentRecord = parentRecord;
 			this.recordType = recordType;
-			this.records = new Dictionary<AbstractRecord, TextCell> ();
-			foreach (var record in RecordRepository.Instance.GetRecords (recordType).OrderBy(r => r.ToString()))
+
+			var tableSection = new TableSection (this.recordType.ToString ()); // TODO: Proper title
+
+			// Get records that aren't already linked to the parent record
+			var selectableRecords = 
+				RecordRepository
+					.Instance
+					.GetRecords (this.recordType)
+					.Except (this.parentRecord.LinkedRecords)
+					.OrderBy (r => r.ToString ());
+
+			foreach (var record in selectableRecords)
 			{
-				this.records.Add (record, CreateCellFromRecord (record));
+				TextCell cell = CreateCellFromRecord (record);
+				tableSection.Add(cell);
 			}
+
+			var tableView = new TableView
+			{
+				Intent = TableIntent.Menu,
+				Root = new TableRoot (this.recordType.ToString ()) { tableSection } // TODO: Proper title
+			};
+
+			this.Content = new StackLayout{ Children = {tableView} };
 		}
 
+		/// <summary>
+		/// Creates a TextCell from a record and attaches a Command to select the item
+		/// </summary>
 		private TextCell CreateCellFromRecord(AbstractRecord record)
 		{
-//			Command<Type> notesEditorPage = 
-//				new Command<Type>(async (Type pageType) =>
-//					{
-//						NotesEditorPage page = (NotesEditorPage)Activator.CreateInstance(pageType, this.contact);
-//						await this.Navigation.PushAsync(page);
-//						this.notesCell.Detail = this.contact.Notes;
-//					});
+			Command selectRecordCommand = 
+				new Command( async() =>
+					{
+						this.parentRecord.LinkedRecords.Add(record);
+						await this.Navigation.PopAsync();
+					});
+
 			var cell = new TextCell
 			{
-				Text = record.ToString()
+				Text = record.ToString(),
+				Command = selectRecordCommand
 			};
 
 			return cell;

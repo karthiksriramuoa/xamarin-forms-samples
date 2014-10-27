@@ -16,19 +16,6 @@ namespace FormsGallery.Models
 		public string Source { get; set; }
 		public bool IsCompany { get; set; }
 
-		public List<AbstractRecord> LinkedRecords
-		{
-			get
-			{
-				if (this.linkedRecords == null)
-					this.linkedRecords = new List<AbstractRecord> ();
-
-				return this.linkedRecords;
-			}
-			set { this.linkedRecords = value; }
-		}
-		private List<AbstractRecord> linkedRecords;
-
 		public Contact () : base (RecordType.Contact)
 		{
 
